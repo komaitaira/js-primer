@@ -15,3 +15,13 @@ object.key = "新しい値";
 // テンプレートリテラル内で${変数名}と書いた場合に、その変数の値を埋め込むことができる。
 const str = "文字列";
 console.log(`これは${str}です`); 
+
+// オブジェクトリテラル
+const obj = {
+  "key": "value"
+};
+
+// ドット記法での参照
+console.log(obj.key); // => "value"
+// ブラケット記法での参照
+console.log(obj["key"]); // => "value"
