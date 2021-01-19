@@ -1,3 +1,4 @@
+// エントリーポイント ===================================================================================
 console.log("index.js: loaded");
 
 const heading = document.querySelector("h2");
@@ -21,3 +22,30 @@ document.body.appendChild(button);
 // ローカルサーバーを使ってブラウザでindex.htmlを表示した
 // index.jsからコンソールに出力されたログを確認した
 // JavaScriptからHTMLドキュメントを操作するDOMについて学んだ
+
+// ===================================================================================
+
+// HTTP通信 Fetch API ===================================================================================
+// ウェブブラウザ上でJavaScriptからHTTP通信するために、Fetch APIという機能を使います。
+
+function fetchUserInfo(userId) {
+  fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`) // fetchメソッドはPromiseを返す
+    .then(response => {
+      console.log(response.status); // => 200
+      if (!response.ok) {
+        console.error("エラーレスポンス", response);
+      } else {
+        return response.json().then(userInfo => {
+          // JSONパースされたオブジェクトが渡される
+          console.log(userInfo); // => {...}
+        });
+      }
+    }).catch(error => {
+      console.log(error);
+    });
+}
+
+// Fetch APIを使ってHTTPリクエストを送った
+// GitHubのAPIから取得したユーザー情報のJSONオブジェクトをコンソールに出力した
+// Fetch APIの呼び出しに対するエラーハンドリングを行った
+// fetchUserInfo関数を宣言し、ボタンのクリックイベントで呼び出した
